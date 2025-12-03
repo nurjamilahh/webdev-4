@@ -32,17 +32,22 @@ This project uses a standard, logical file organization commonly found in web ap
 
 /milestone-2-nurjamilahh/
 ├── index.html                      <-- Main landing page
-├── another.html
-├── /assets/
-│   ├── /css/
-│   │   ├── main.css                <-- Core layout and component styles
-│   │   ├── header-nav.css    
-│   │   └── footer.css
-│   └── /images/
-│      ├── nur-profile-large.webp   <-- Responsive image in WebP format
-│      └── ...other project images
+├── /games/
+│   ├── number-guessing.html                    
+│   ├── rock-paper-scissors.html
+│   ├── clicker.html    
+│   └── memory-card.html
+├── /css/
+│   ├── main.css                    <-- Core layout and component styles
+│   └── game-style.css
+├── /js/
+│   ├── script.js                    
+│   ├── number-guessing.js
+│   ├── rock-paper-scissors.js  
+│   ├── clicker.js  
+│   └── memory-card.js
 └── README.md
-    
+
 ```
 
 ---
