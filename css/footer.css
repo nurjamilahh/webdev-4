@@ -57,12 +57,11 @@
 }
 
 .copyright {
-    margin-top: 15px;
+    margin-top: 16px;
     font-size: 0.8em;
     color: #99aab5; /* Lighter text for copyright */
 }
 
-/* Anda menambahkan ini di bagian tengah file CSS Anda */
 
 .footer-social {
     /* Tambahkan ini untuk menengahkan judul H5 dan elemen blok/inline-block lainnya */

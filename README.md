@@ -66,6 +66,8 @@ The RevoFun Gaming Hub features a minimum of three fully implemented, browser-ba
 * **Number Guessing Game:** This classic game challenges the player to guess a random number selected by the computer (e.g., between 1-100). The game provides immediate feedback ("Too high" or "Too low") to guide the player, who is limited to five attempts to successfully find the correct number.
 * **Rock, Paper, Scissors:** A digitized version of the beloved hand game, where the player competes against a random choice made by the computer. The game determines the winner based on the classic rules and keeps track of the match scores.
 * **Clicker Game:** This quick and addictive game presents a large button, requiring players to click it as rapidly as possible within a set time limit. Upon expiration of the timer, the player's final click score is displayed.
+* **Cosmic Dodge (Falling Objects) Game:** A fast-paced, action-based game where the player controls a ship/character to avoid randomly generated objects (e.g., meteors or space debris) that fall from the top of the screen. The goal is to survive as long as possible while the game increases in speed and difficulty.
+
 * **Memory Card Game (Optional Game 4)**: This game involves matching pairs of hidden cards. Players flip two cards per turn; if they match, they stay open, and the goal is to successfully match all pairs.
 
 ### ✨ User Experience & Optional Features
@@ -93,6 +95,7 @@ The RevoFun Gaming Hub features a minimum of three fully implemented, browser-ba
 This project was built using core web development technologies, focusing on foundational front-end skills:
 * **HTML5:** Used for structuring the content, ensuring semantic and accessible markup.
 * **CSS3:** Used for styling, layout, visual appeal, and ensuring responsiveness across different devices.
+* **Tailwind CSS:** Used minimally for styling the footer section, providing utility-first classes to optimize rapid layout development for that specific component.
 * **JavaScript (ES6+):** The primary language used to handle all game logic, interactivity, DOM manipulation, and user input.
 * **Google Fonts & Font Awesome:** for typography and icons.
 * **Deployment:** GitHub Pages.
@@ -119,7 +122,6 @@ Since this is a static front-end portfolio site, it can be viewed directly after
 
 If you'd like to chat, network, or discuss my journey, please feel free to reach out!
 
-* **Contact Form:** Drop your message directly via the contact form on the website (Click **"Contact"**).
 * **LinkedIn:** [https://www.linkedin.com/in/nurjamilah-h/](https://www.linkedin.com/in/nurjamilah-h/)
 * **Email:** worknurjam@gmail.com
 
