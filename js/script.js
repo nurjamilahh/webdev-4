@@ -3,7 +3,7 @@
  * 🚀 RevoFun Main Navigation & Page Handler
  * ==========================================
  */
-// Use window.onload for initialization, as requested
+// Use window.onload for initialization
 window.onload = function() {
     // 1. Get all page sections and navigation links
     const navLinks = document.querySelectorAll('.navbar a');
