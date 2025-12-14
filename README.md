@@ -41,13 +41,13 @@ This project uses a standard, logical file organization commonly found in web ap
 │   ├── styles.css                  <-- Core layout and component styles
 │   ├── responsive.css
 │   └── footer.css
-├── /images/                                <-- Assets specific to each game                         
+├── /images/                        <-- Assets specific to each game                         
 │   ├── number-guessing.webp
 │   ├── rock-paper-scissors.webp  
 │   ├── clicker.webp  
 │   └── dodge.webp
 ├── /js/
-│   ├── script.js                           <-- Scripts supporting the main layout
+│   ├── script.js                   <-- Scripts supporting the main layout
 │   ├── number-guessing.js
 │   ├── rock-paper-scissors.js  
 │   ├── clicker.js
