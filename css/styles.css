@@ -8,6 +8,7 @@
     --color-background-dark: #2c3e50; /* Dark Navy for contrast */
     --color-text-light: #ecf0f1;      /* Light Text */
     --color-white: #ffffff;
+    /* #5a4b77; lilac -- #d4af37; gold -- #e6e0eb; Light lilac -- #f2f2f2; grey */
 }
 
 /* --- Global Styles & Fonts --- */
@@ -19,14 +20,14 @@
 
 body {
     font-family: 'Nunito', sans-serif;
-    background-color: var(--color-light-pink);
+    /* background-color: var(--color-light-pink); */
     color: var(--color-background-dark);
     line-height: 1.6;
     scroll-behavior: smooth;
 }
 
 h1, h2, h3, h4 {
-    font-family: 'Bungee', cursive; /* Playful Title Font */
+    font-family: 'Bungee', cursive;
     color: var(--color-primary-blue);
     text-align: center;
     margin-bottom: 0.5em;
@@ -44,7 +45,7 @@ h1, h2, h3, h4 {
 /* --- 🌟 Navigation Bar --- */
 .navbar {
     background-color: var(--color-background-dark);
-    padding: 15px 30px;
+    padding: 16px 28px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -83,14 +84,37 @@ h1, h2, h3, h4 {
 
 /* --- 🏠 Hero Section (Home) --- */
 .hero-section {
-    background: linear-gradient(135deg, var(--color-primary-blue), var(--color-secondary-yellow));
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     color: var(--color-white);
+    display: flex;
+    justify-content: center; 
+    align-items: center;     
+    min-height: 100vh;       
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        background-attachment: scroll; 
+        background-position: 70% center; 
+    }
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;  
+    align-items: center;     
+    gap: 20px;               
 }
 
 .hero-content h2 {
     font-size: 3em;
     color: var(--color-white);
     text-shadow: 3px 3px 0 var(--color-background-dark);
+    /* added on 20251217#1 */
+    margin: 0;
 }
 
 /* --- 🎮 Game Cards Overview (CSS Grid System) --- */
@@ -109,18 +133,23 @@ h1, h2, h3, h4 {
 }
 
 .card {
-    background-color: var(--color-light-pink);
+    /* background-color: var(--color-light-pink); */
     border: 5px solid var(--color-accent-green);
     border-radius: 15px;
     padding: 25px;
     box-shadow: 8px 8px 0 var(--color-primary-blue);
-    transition: transform 0.3s;
+   
     text-align: center;
+    flex: 0 0 auto; 
+    scroll-snap-align: center; 
+    transition: transform 0.4s ease;
 }
 
 .card:hover {
-    transform: translateY(-5px);
+  
     box-shadow: 10px 10px 0 var(--color-primary-blue);
+    transform: scale(1.02);
+    z-index: 10;
 }
 
 .card-icon {
@@ -128,6 +157,35 @@ h1, h2, h3, h4 {
     margin-bottom: 10px;
     color: var(--color-accent-red);
 }
+
+/* --- Bagian Carousel Baru --- */
+
+/* 1. Menghilangkan Scrollbar agar terlihat bersih seperti di gambar */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* 2. Memasukkan Gambar Background ke masing-masing kartu */
+.game-1 { background-image: url('../images/guess-image.webp'); background-size: cover; background-position: center; }
+.game-2 { background-image: url('../images/rps-400.webp'); background-size: cover; background-position: center; }
+.game-3 { background-image: url('../images/clicker-image.webp'); background-size: cover; background-position: center; }
+.game-4 { background-image: url('../images/dodge-400.webp'); background-size: cover; background-position: center; }
+
+/* 3. Efek Hover agar kartu sedikit membesar saat disentuh mouse */
+
+
+.slider-container {
+    display: flex;
+    overflow-x: auto; 
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch; 
+}
+
 
 /* --- General Button Styling --- */
 .btn, .btn-small, .btn-large, .btn-tiny {
@@ -173,11 +231,6 @@ h1, h2, h3, h4 {
     transform: scale(1.02);
 }
 
-/* --- Game Page Layouts --- */
-.game-page {
-    background-color: var(--color-light-pink);
-}
-
 .game-container {
     background-color: var(--color-white);
     padding: 40px;
@@ -193,7 +246,7 @@ input[type="number"], input[type="text"] {
     padding: 12px;
     margin: 8px 0;
     width: 80%;
-    border-radius: 5px;
+    border-radius: 4px;
     border: 2px solid var(--color-accent-green);
     font-size: 1em;
 }
@@ -206,206 +259,27 @@ input[type="number"], input[type="text"] {
     min-height: 40px;
 }
 
-/* RPS Specific Styles */
-.rps-choices {
-    /* display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin: 20px 0; #1 20251207*/
-
-    /* #2 20251207 1. Activate CSS Grid */
-    display: grid;
-    
-    /* 2. Define 4 equal columns (4 x 1 fraction) */
-    grid-template-columns: repeat(4, 1fr); 
-    
-    /* 3. Add space between columns/rows */
-    gap: 1.5rem; 
-    
-    /* Center the choice items within the container's available space */
-    justify-content: center;
-    
-    /* Ensure choice buttons don't hit the edges */
-    margin: 1.5rem 0;
-}
-
-.choice-btn {
-    /* background-color: var(--color-primary-blue);
-    width: 70px;
-    height: 70px;
-    font-size: 2em;
-    border-radius: 50%; #1 20251207 */
-
-    /* #2 20251207 Use 'calc' to ensure the button is a perfect circle and responsive */
-    /* 10vw is 10% of the viewport width - a good responsive size */
-    width: 7vw; 
-    height: 7vw; 
-
-    /* add #4 20251207 to limit max size */
-    max-width: 12rem;
-    max-height: 12rem;
-    /* font-size: 0.9rem; */
-    border-radius: 50%; /* Makes it a circle */
-    border: none;
-    background-color: #007bff;
-    color: white;
-    
-    /* Center content (emoji) */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    
-    /* Responsive font size based on viewport width */
-    font-size: 1.2rem; 
-    cursor: pointer;
-    line-height: 1;
-    
-    /* Ensure the button spans only 1 column */
-    /* grid-column-end: span 1; #3 20251207 */
-}
-
 /* Styling for the emoji inside the button */
 .choice-btn > span {
-    /* Note: Use this selector if you wrap the emoji inside a <span> tag in your HTML */
     font-size: 3vw; 
-    margin-bottom: 0.2rem; /* Spacing between the emoji (top) and the text (bottom) */
 }
-
-/* #2 20251207 Specific centering for the first button */
-/* We start the first button (Rock) in the second column to achieve a centered layout (Empty, Rock, Paper, Scissors) */
-/* .rps-choices .choice-btn:first-child {
-    grid-column-start: 2; 
-} */
 
 /* Media Query for Mobile/Smaller Screens (e.g., viewport width less than 600px) */
 @media (max-width: 600px) {
     .rps-choices {
-        /* Switch to a single column to stack the buttons */
         grid-template-columns: 1fr; 
         gap: 1rem;
     }
-    
     .choice-btn {
-        /* Make buttons fill the width of the container */
         width: 100%;
-        height: 15vh; /* Use viewport height for a fixed minimum size */
+        height: 15vh; 
         font-size: 1.5rem;
-        
-        /* Reset centering from the 4-column layout */
         grid-column-start: unset
     }
     
-    /* Ensure the buttons are stacked vertically and centered */
     .rps-choices .choice-btn {
         margin: 0.5rem 0;
     }
-}
-
-/* --- Media Query for Desktop --- */
-@media (min-width: 1024px) {
-    .choice-btn > span {
-        font-size: 3rem; 
-    }
-    .rps-choices .choice-btn:first-child {
-    grid-column-start: 2;
-    }
-}
-
-/* Clicker Specific Styles */
-.click-area {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    background-color: var(--color-accent-red);
-    color: var(--color-white);
-    font-size: 2em;
-    margin: 30px auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 8px 0 var(--color-background-dark);
-}
-
-.click-area:active {
-    transform: translateY(8px);
-    box-shadow: none;
-}
-
-/* --- Dodge Game Styles --- */
-.dodge-game-container {
-    background-color: var(--color-background-dark);
-    color: var(--color-white);
-}
-
-.instruction-box {
-    background-color: var(--color-secondary-yellow);
-    color: var(--color-background-dark);
-    padding: 15px;
-    border-radius: 8px;
-}
-
-.game-canvas-area {
-    padding: 10px;
-    background-color: #1a1a1a;
-    border: 5px solid var(--color-accent-green);
-    margin: 20px auto;
-}
-
-#game-screen {
-    position: relative;
-    width: 480px; 
-    height: 320px; 
-    background-color: #000022; 
-    overflow: hidden; 
-}
-
-.player {
-    position: absolute;
-    bottom: 5px;
-    width: 40px;
-    height: 40px;
-    background-color: var(--color-primary-blue);
-    border-radius: 5px;
-    text-align: center;
-    line-height: 40px;
-    font-size: 1.5em;
-    z-index: 10;
-}
-
-.object {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background-color: var(--color-accent-red);
-    border-radius: 50%;
-    z-index: 5;
-}
-
-.game-stats {
-    padding: 10px 0;
-    color: var(--color-text-light);
-}
-
-/* Leaderboard Styles */
-.leaderboard-section {
-    margin-top: 20px;
-    padding: 15px;
-    background-color: #3e536b;
-    border-radius: 8px;
-    color: var(--color-text-light);
-}
-
-#dodge-leaderboard-list {
-    list-style: none;
-    padding: 0;
-}
-
-#dodge-leaderboard-list li {
-    padding: 5px 0;
-    border-bottom: 1px dashed #5a748f;
-    display: flex;
-    justify-content: space-between;
 }
 
 /* --- Utility Classes --- */
@@ -418,7 +292,6 @@ input[type="number"], input[type="text"] {
 /* ---  Why Choose RevoFun --- */
 .why-us-section {
     background-color: var(--color-white);
-    /* Override min-height for feature display */
     min-height: auto; 
     padding-bottom: 80px;
 }
@@ -446,3 +319,4 @@ input[type="number"], input[type="text"] {
     color: var(--color-background-dark);
     margin-top: 0;
 }
+

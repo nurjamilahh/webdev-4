@@ -24,40 +24,6 @@ The platform is designed for casual gamers, focusing on a fun, intuitive user ex
 
 ---
 
-## Project Structure
-
-This project uses a standard, logical file organization commonly found in web applications:
-
-```text
-
-/milestone-2-nurjamilahh/
-├── index.html                      <-- Main landing page
-├── /games/
-│   ├── number-guessing.html                    
-│   ├── rock-paper-scissors.html
-│   ├── clicker.html    
-│   └── dodge.html
-├── /css/
-│   ├── styles.css                  <-- Core layout and component styles
-│   ├── responsive.css
-│   └── footer.css
-├── /images/                        <-- Assets specific to each game                         
-│   ├── number-guessing.webp
-│   ├── rock-paper-scissors.webp  
-│   ├── clicker.webp  
-│   └── dodge.webp
-├── /js/
-│   ├── script.js                   <-- Scripts supporting the main layout
-│   ├── number-guessing.js
-│   ├── rock-paper-scissors.js  
-│   ├── clicker.js
-│   └── dodge.js  
-└── README.md
-
-```
-
----
-
 ## Features Implemented
 
 ### 🏡Core Landing Page
@@ -99,6 +65,7 @@ This project was built using core web development technologies, focusing on foun
 * **HTML5:** Used for structuring the content, ensuring semantic and accessible markup.
 * **CSS3:** Used for styling, layout, visual appeal, and ensuring responsiveness across different devices.
 * **Tailwind CSS:** Used minimally for styling the footer section, providing utility-first classes to optimize rapid layout development for that specific component.
+* **TypeScript:** Utilized to manage game settings and audio logic. By implementing Type Safety, it ensures reliable volume control and state management, reducing potential runtime errors.
 * **JavaScript (ES6+):** The primary language used to handle all game logic, interactivity, DOM manipulation, and user input.
 * **Google Fonts & Font Awesome:** for typography and icons.
 * **Deployment:** GitHub Pages.
