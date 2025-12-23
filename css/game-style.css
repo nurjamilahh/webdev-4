@@ -309,3 +309,8 @@
     width: 100%;
 }
 
+/* --- Utility Classes --- */
+.hidden { display: none !important; }
+.winner { background-color: var(--color-accent-green); color: var(--color-white); }
+.loser { background-color: var(--color-accent-red); color: var(--color-white); }
+.draw { background-color: var(--color-secondary-yellow); color: var(--color-background-dark); }

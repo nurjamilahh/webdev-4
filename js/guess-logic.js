@@ -1,175 +1,169 @@
-"use strict";
 /**
- * ==============================
- * 🔢 Number Guessing Game Logic
- * ==============================
+ * ===================================
+ * RevoFun: Number Guessing Game Logic
+ * Author: Nur Jamilah
+ * Version: 1.0.0 (Production Ready)
+ * ===================================
  */
-// 1. DEKLARASI VARIABEL GLOBAL (Wajib di paling atas)
-let gameState;
-// 2. SEMUA LOGIKA HARUS DI DALAM DOMContentLoaded AGAR ELEMEN HTML TERBACA
-document.addEventListener('DOMContentLoaded', () => {
-    // A. INISIALISASI gameState (Harus paling pertama!)
-    gameState = {
-        playerName: '',
-        secretNumber: 0,
-        attemptsLeft: 5,
-        totalAttemptsUsed: 0,
-        gameActive: false,
-        highScore: Number(localStorage.getItem('guessHighScore')) || 0
-    };
-    // B. AMBIL ELEMEN HTML
-    const nicknameSetup = document.getElementById('nickname-setup');
-    const nicknameInput = document.getElementById('nickname-input');
-    const startGuessBtn = document.getElementById('start-guess-btn');
-    const instructionBox = document.getElementById('guess-instructions');
-    const startRoundBtn = document.getElementById('start-round-btn');
-    const currentPlayerName = document.getElementById('current-player-name');
+
+function initNumberGuessingGame() {
+    // --- 1. ELEMENT SELECTORS ---
+    const setupSection = document.getElementById('nickname-setup');
+    const instructionSection = document.getElementById('guess-instructions');
     const gameDisplay = document.getElementById('game-display');
-    const guessForm = document.getElementById('guess-form');
+    const gameOverSection = document.getElementById('guess-game-over');
+
+    const nicknameInput = document.getElementById('nickname-input');
+    const currentPlayerName = document.getElementById('current-player-name');
     const guessInput = document.getElementById('guess-input');
+
+    const startArenaBtn = document.getElementById('start-guess-btn');
+    const startRoundBtn = document.getElementById('start-round-btn');
+    const submitGuessBtn = document.getElementById('guess-submit-btn');
+    const playAgainBtn = document.getElementById('play-again-guess-btn');
+
     const guessMessage = document.getElementById('guess-message');
     const attemptsSpan = document.getElementById('guess-attempts');
-    const highScoreSpan = document.getElementById('guess-high-score');
-    const gameOverSection = document.getElementById('guess-game-over');
-    const statusTitle = document.getElementById('status-title');
     const finalScoreMsg = document.getElementById('final-score-message');
-    const resetBtn = document.getElementById('guess-reset-btn');
-    const leaderboardList = document.getElementById('guess-leaderboard-list');
-    const gameMusic = document.getElementById('gameMusic');
-    const musicToggle = document.getElementById('musicToggle');
-    const musicIcon = document.getElementById('musicIcon');
-    // C. UPDATE TAMPILAN AWAL
-    if (highScoreSpan)
-        highScoreSpan.textContent = gameState.highScore.toString();
-    updateLeaderboard();
-    /** 1. Handle Nickname Setup */
-    startGuessBtn === null || startGuessBtn === void 0 ? void 0 : startGuessBtn.addEventListener('click', () => {
+    const guessForm = document.getElementById('guess-form');
+
+    // --- 2. GAME STATE ---
+    let state = {
+        secretNumber: 0,
+        attemptsLeft: 5,
+        history: [],
+        playerName: ""
+    };
+
+    // --- 3. CORE GAME FLOW ---
+
+    /**
+     * Step 1: Entry Arena
+     * Captures player nickname and moves to instructions.
+     */
+    startArenaBtn.addEventListener('click', () => {
         const name = nicknameInput.value.trim();
-        if (name) {
-            gameState.playerName = name;
-            if (currentPlayerName)
-                currentPlayerName.textContent = name;
-            nicknameSetup.classList.add('hidden');
-            instructionBox.classList.remove('hidden');
+        if (name === "") {
+            alert("Please enter your Genius Name first!");
+            return;
         }
-        else {
-            alert("Please enter your name!");
-        }
+        state.playerName = name;
+        currentPlayerName.textContent = name;
+        
+        setupSection.classList.add('hidden');
+        instructionSection.classList.remove('hidden');
     });
-    /** 2. Start Round */
-    startRoundBtn === null || startRoundBtn === void 0 ? void 0 : startRoundBtn.addEventListener('click', () => {
-        instructionBox.classList.add('hidden');
+
+    /**
+     * Step 2: Instruction Transition
+     * Hides instructions and initializes the actual game area.
+     */
+    startRoundBtn.addEventListener('click', () => {
+        instructionSection.classList.add('hidden');
         gameDisplay.classList.remove('hidden');
-        initGame();
+        resetGameState();
     });
-    /** 3. Initialize Game Logic */
-    function initGame() {
-        gameState.secretNumber = Math.floor(Math.random() * 100) + 1;
-        gameState.attemptsLeft = 5;
-        gameState.totalAttemptsUsed = 0;
-        gameState.gameActive = true;
-        if (attemptsSpan)
-            attemptsSpan.textContent = gameState.attemptsLeft.toString();
-        if (guessMessage) {
-            guessMessage.textContent = 'Waiting for your guess...';
-            guessMessage.className = 'message-box';
-        }
-        if (guessInput) {
-            guessInput.value = '';
-            guessInput.disabled = false;
-        }
-        gameOverSection.classList.add('hidden');
-    }
-    /** 4. Handle Guess Submission */
-    guessForm === null || guessForm === void 0 ? void 0 : guessForm.addEventListener('submit', (e) => {
+
+    /**
+     * Step 3: Main Guessing Logic
+     * Processes user input, updates history, and checks for Win/Loss.
+     */
+    guessForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        if (!gameState.gameActive)
+        const userGuess = parseInt(guessInput.value);
+
+        // Input Validation
+        if (isNaN(userGuess) || userGuess < 1 || userGuess > 100) {
+            guessMessage.textContent = "Warning: Number must be between 1 - 100!";
             return;
-        const guess = parseInt(guessInput.value);
-        if (isNaN(guess) || guess < 1 || guess > 100)
-            return;
-        gameState.attemptsLeft--;
-        gameState.totalAttemptsUsed++;
-        if (attemptsSpan)
-            attemptsSpan.textContent = gameState.attemptsLeft.toString();
-        if (guess === gameState.secretNumber) {
+        }
+
+        // Update State
+        state.history.push(userGuess);
+        state.attemptsLeft--;
+        attemptsSpan.textContent = state.attemptsLeft;
+
+        // Check Result
+        if (userGuess === state.secretNumber) {
             endGame(true);
-        }
-        else if (gameState.attemptsLeft === 0) {
+        } else if (state.attemptsLeft <= 0) {
             endGame(false);
+        } else {
+            const hint = userGuess < state.secretNumber ? "TOO LOW" : "TOO HIGH";
+            guessMessage.textContent = `${userGuess} is ${hint}! Try again.`;
+            guessInput.value = "";
+            guessInput.focus();
         }
-        else {
-            if (guessMessage) {
-                guessMessage.textContent = guess < gameState.secretNumber ? "📉 Too Low!" : "📈 Too High!";
-            }
-        }
-        guessInput.value = '';
     });
-    /** 5. End Game Logic */
+
+    /**
+     * Step 4: Play Again / Reset
+     * Returns the user to the game screen from the Game Over screen.
+     */
+    playAgainBtn.addEventListener('click', () => {
+        gameOverSection.classList.add('hidden');
+        gameDisplay.classList.remove('hidden');
+        resetGameState();
+    });
+
+    // --- 4. HELPER FUNCTIONS ---
+
+    /**
+     * Resets the game state variables and UI elements for a new round.
+     */
+    function resetGameState() {
+        state.secretNumber = Math.floor(Math.random() * 100) + 1;
+        state.attemptsLeft = 5;
+        state.history = [];
+        
+        attemptsSpan.textContent = state.attemptsLeft;
+        guessMessage.textContent = "Good Luck! Start guessing...";
+        guessMessage.className = "message-box mt-4";
+        guessInput.value = "";
+        guessInput.disabled = false;
+        submitGuessBtn.disabled = false;
+    }
+
+    /**
+     * Displays the final result screen with icons and player history.
+     * @param {boolean} isWin - Determines the visual theme of the result.
+     */
     function endGame(isWin) {
-        gameState.gameActive = false;
-        guessInput.disabled = true;
         gameDisplay.classList.add('hidden');
         gameOverSection.classList.remove('hidden');
+
+        const historyStr = state.history.join(", ");
+        const resultTitle = document.getElementById('result-title');
+
         if (isWin) {
-            statusTitle.textContent = "🎉 Excellent Guess!";
-            statusTitle.style.color = "#22c55e";
-            finalScoreMsg.innerHTML = `The number was <b>${gameState.secretNumber}</b>.<br>You found it in ${gameState.totalAttemptsUsed} attempts!`;
-            saveScore(gameState.playerName, gameState.totalAttemptsUsed);
+            resultTitle.innerHTML = `<i class="fas fa-crown" style="color: #f1c40f;"></i> YOU WIN!`;
+            finalScoreMsg.innerHTML = `
+                <i class="fas fa-thumbs-up" style="color: #28a745;"></i> 
+                Amazing <strong>${state.playerName}</strong>! The number was indeed ${state.secretNumber}. <br> 
+                <small style="display: block; margin-top: 10px;">
+                    <i class="fas fa-history"></i> Your History: [${historyStr}]
+                </small>
+            `;
+            gameOverSection.className = "message-box winner";
+        } else {
+            resultTitle.innerHTML = `<i class="fas fa-skull-crossbones"></i> GAME OVER`;
+            finalScoreMsg.innerHTML = `
+                <i class="fas fa-heart-broken" style="color: #dc3545;"></i> 
+                Sorry <strong>${state.playerName}</strong>, the correct number was ${state.secretNumber}. <br> 
+                <small style="display: block; margin-top: 10px;">
+                    <i class="fas fa-history"></i> Your attempts: [${historyStr}]
+                </small>
+            `;
+            gameOverSection.className = "message-box loser";
         }
-        else {
-            statusTitle.textContent = "😭 Mission Failed!";
-            statusTitle.style.color = "#ef4444";
-            finalScoreMsg.textContent = `You ran out of juice! The number was ${gameState.secretNumber}.`;
-        }
+
+        // Apply Refresh icon to button
+        playAgainBtn.innerHTML = `<i class="fas fa-redo-alt"></i> Play Again`;
     }
-    /** 6. Leaderboard & Storage */
-    function saveScore(name, score) {
-        let leaderboard = JSON.parse(localStorage.getItem('guessLeaderboard') || '[]');
-        leaderboard.push({ name, score });
-        leaderboard.sort((a, b) => a.score - b.score);
-        leaderboard = leaderboard.slice(0, 5);
-        localStorage.setItem('guessLeaderboard', JSON.stringify(leaderboard));
-        if (gameState.highScore === 0 || score < gameState.highScore) {
-            localStorage.setItem('guessHighScore', score.toString());
-            gameState.highScore = score;
-            if (highScoreSpan)
-                highScoreSpan.textContent = score.toString();
-        }
-        updateLeaderboard();
-    }
-    function updateLeaderboard() {
-        const leaderboard = JSON.parse(localStorage.getItem('guessLeaderboard') || '[]');
-        if (leaderboardList) {
-            if (leaderboard.length === 0) {
-                leaderboardList.innerHTML = `<li style="color: #ccc; list-style: none; text-align: center;">No scores yet...</li>`;
-            }
-            else {
-                leaderboardList.innerHTML = leaderboard
-                    .map(entry => `<li style="color: #ffeb3b; list-style: none; margin-bottom: 5px; text-align: center;">
-                                    🌟 ${entry.name}: ${entry.score} attempts
-                                  </li>`)
-                    .join('');
-            }
-        }
-    }
-    /** 7. Music & Reset */
-    musicToggle === null || musicToggle === void 0 ? void 0 : musicToggle.addEventListener('click', () => {
-        if (gameMusic.paused) {
-            gameMusic.play();
-            musicIcon.classList.replace('fa-volume-mute', 'fa-volume-up');
-        }
-        else {
-            gameMusic.pause();
-            musicIcon.classList.replace('fa-volume-up', 'fa-volume-mute');
-        }
-    });
-    resetBtn === null || resetBtn === void 0 ? void 0 : resetBtn.addEventListener('click', () => {
-        gameOverSection.classList.add('hidden');
-        gameDisplay.classList.remove('hidden');
-        initGame();
-    });
-    // Menempelkan fungsi ke window agar bisa dipanggil dari Console (F12)
-    window.endGame = endGame;
-});
-//# sourceMappingURL=guess-logic.js.map
+}
+
+/**
+ * --- INITIALIZATION ---
+ * Ensures the game logic only runs after the full DOM is loaded.
+ */
+window.addEventListener('load', initNumberGuessingGame);

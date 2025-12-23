@@ -231,64 +231,6 @@ h1, h2, h3, h4 {
     transform: scale(1.02);
 }
 
-.game-container {
-    background-color: var(--color-white);
-    padding: 40px;
-    border-radius: 16px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-    width: 100%;
-    max-width: 500px;
-    text-align: center;
-    border: 3px solid var(--color-primary-blue);
-}
-
-input[type="number"], input[type="text"] {
-    padding: 12px;
-    margin: 8px 0;
-    width: 80%;
-    border-radius: 4px;
-    border: 2px solid var(--color-accent-green);
-    font-size: 1em;
-}
-
-.message-box {
-    margin-top: 16px;
-    padding: 12px;
-    border-radius: 4px;
-    font-weight: bold;
-    min-height: 40px;
-}
-
-/* Styling for the emoji inside the button */
-.choice-btn > span {
-    font-size: 3vw; 
-}
-
-/* Media Query for Mobile/Smaller Screens (e.g., viewport width less than 600px) */
-@media (max-width: 600px) {
-    .rps-choices {
-        grid-template-columns: 1fr; 
-        gap: 1rem;
-    }
-    .choice-btn {
-        width: 100%;
-        height: 15vh; 
-        font-size: 1.5rem;
-        grid-column-start: unset
-    }
-    
-    .rps-choices .choice-btn {
-        margin: 0.5rem 0;
-    }
-}
-
-/* --- Utility Classes --- */
-.hidden { display: none !important; }
-.winner { background-color: var(--color-accent-green); color: var(--color-white); }
-.loser { background-color: var(--color-accent-red); color: var(--color-white); }
-.draw { background-color: var(--color-secondary-yellow); color: var(--color-background-dark); }
-
-
 /* ---  Why Choose RevoFun --- */
 .why-us-section {
     background-color: var(--color-white);
@@ -320,3 +262,22 @@ input[type="number"], input[type="text"] {
     margin-top: 0;
 }
 
+/* --- 🛠 Nav Refactor: Logo as Home Link --- */
+
+/* Mencegah logo berubah warna/garis bawah karena tag <a> */
+.logo-link {
+    text-decoration: none;
+    display: inline-block;
+}
+
+/* Memastikan teks logo tetap menggunakan warna Sunny Yellow */
+.logo-link .logo {
+    margin-bottom: 0; /* Menghilangkan margin bawah bawaan h1 agar navbar rapi */
+    cursor: pointer;
+}
+
+/* Efek interaktif saat logo diarahkan kursor */
+.logo-link:hover .logo {
+    color: var(--color-white); /* Berubah putih saat hover agar user tahu ini bisa diklik */
+    transition: color 0.3s ease;
+}
