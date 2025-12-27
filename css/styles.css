@@ -22,7 +22,7 @@ body {
     color: var(--color-background-dark);
     line-height: 1.6;
     scroll-behavior: smooth;
-    overflow-x: hidden; /* Mencegah horizontal scroll di HP */
+    overflow-x: hidden;
 }
 
 h1, h2, h3, h4 {
@@ -41,47 +41,9 @@ h1, h2, h3, h4 {
     flex-direction: column;
 }
 
-/* --- 🌟 Navigation Bar --- */
-.navbar {
-    background-color: var(--color-background-dark);
-    padding: 16px 28px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
+/* --- Navigation Bar: Tailwind --- */
 
-.logo {
-    color: var(--color-secondary-yellow);
-    font-size: 1.8em;
-}
-
-.nav-links {
-    list-style: none;
-    display: flex;
-}
-
-.nav-links li {
-    margin-left: 15px;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: var(--color-text-light);
-    font-weight: 700;
-    padding: 5px 10px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-
-.nav-links a:hover {
-    background-color: var(--color-primary-blue);
-}
-
-/* --- 🏠 Hero Section --- */
+/* --- Hero Section --- */
 .hero-section {
     background-size: cover;
     background-position: center;
@@ -97,9 +59,9 @@ h1, h2, h3, h4 {
 
 .hero-content {
     display: flex;
-    flex-direction: column;  
-    align-items: center;     
-    gap: 20px;               
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; 
 }
 
 .hero-content h2 {
@@ -143,15 +105,15 @@ h1, h2, h3, h4 {
 .game-1, .game-2, .game-3, .game-4 {
     background-size: cover;
     background-position: center;
-    color: white; /* Agar teks di atas gambar terbaca */
+    color: white;
 }
 
-/* --- 📱 RESPONSIVE COMBINED (Dulu responsive.css) --- */
+/* --- RESPONSIVE COMBINED --- */
 
 /* Tablet (Max Width 992px) */
 @media (max-width: 992px) {
     .grid-4 {
-        grid-template-columns: repeat(2, 1fr); /* Menjadi 2 kolom */
+        grid-template-columns: repeat(2, 1fr);
         gap: 20px;
     }
     
@@ -162,21 +124,6 @@ h1, h2, h3, h4 {
 
 /* Mobile (Max Width 600px) */
 @media (max-width: 600px) {
-    .navbar {
-        flex-direction: column; /* Menu turun ke bawah logo */
-        padding: 15px;
-    }
-    
-    .nav-links {
-        margin-top: 15px;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .nav-links li {
-        margin: 5px 10px;
-    }
-
     .hero-section {
         background-attachment: scroll; 
         background-position: center; 
@@ -187,7 +134,7 @@ h1, h2, h3, h4 {
     }
 
     .grid-4 {
-        grid-template-columns: 1fr; /* Menjadi 1 kolom saja */
+        grid-template-columns: 1fr; 
         padding: 0 10px;
     }
 
@@ -197,11 +144,11 @@ h1, h2, h3, h4 {
     }
 
     .card {
-        padding: 40px 20px; /* Lebih tinggi di mobile agar jempol nyaman */
+        padding: 40px 20px;
     }
 }
 
-/* --- (Sisanya seperti Button & Feature tetap sama) --- */
+/* --- Button & Feature  --- */
 .btn { background-color: var(--color-accent-green); color: var(--color-white); border-radius: 8px; padding: 12px 20px; text-decoration: none; font-weight: 700; display: inline-block; cursor: pointer; border: none; }
 .btn-large { background-color: var(--color-accent-red); color: var(--color-white); font-size: 1.5em; padding: 20px 40px; border-radius: 12px; text-decoration: none; font-weight: 900; }
 .no-scrollbar::-webkit-scrollbar { display: none; }

@@ -17,25 +17,33 @@
    
 </head>
 
-<body style="background: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url('../images/dodge-image.webp') no-repeat center/cover;">
+<body>
+    <header class="sticky top-0 z-50 bg-[#121212] px-4 py-2 border-b border-white/5 shadow-sm">
+        <nav class="flex items-center justify-between flex-nowrap max-w-7xl mx-auto">
+            
+            <a href="../index.html" class="shrink-0">
+                <h1 class="text-lg md:text-xl font-black tracking-tighter bg-gradient-to-b from-[#FFD700] to-[#8A6E2F] bg-clip-text text-transparent">RevoFun
+                </h1>
+            </a>
 
-    <nav class="navbar" aria-label="Navigasi Utama">
-        <a href="../index.html" class="logo-link">
-            <div class="logo">RevoFun</div>
-        </a>
-        <ul class="nav-links">
-            <li><a href="guess.html">Guess</a></li>
-            <li><a href="rps.html">RPS</a></li>
-            <li><a href="clicker.html">Turbo Clicker</a></li>
-            <li><a href="dodge.html">Cosmic Dodge</a></li>
-        </ul>
-    </nav>
+            <ul class="flex items-center gap-2 md:gap-5">
+                <li><a href="guess.html" class="text-[13px] md:text-sm font-bold text-white/80 hover:text-white transition">Guess</a></li>
+                <li><a href="rps.html" class="text-[13px] md:text-sm font-bold text-white/80 hover:text-white transition">RPS</a></li>
+                <li><a href="clicker.html" class="text-[13px] md:text-sm font-bold text-white/80 hover:text-white transition">Clicker</a></li>
+                <li><a href="dodge.html" class="text-[13px] md:text-sm font-bold text-white/80 hover:text-white transition whitespace-nowrap">Dodge</a></li>
+            </ul>
+
+        </nav>
+    </header>
 
     <main id="main-content">
         <article class="game-box-center">
             
             <header>
-                <h1 class="text-3xl font-bold"><span role="img" aria-label="star">🌠</span> Cosmic Dodge</h1>
+                <!-- <h2 class="text-3xl font-bold"><span role="img" aria-label="star">🌠</span> Cosmic Dodge</h2> -->
+                <h2 class="text-3xl font-bold">
+                    <i class="fa-solid fa-meteor mr-2"></i> Cosmic Dodge
+                </h2>
             </header>
 
             <section id="nickname-setup" class="game-setup">
@@ -89,7 +97,7 @@
         </article>
     </main>
 
-    <footer class="main-footer">
+<footer class="main-footer">
     <div class="footer-content-grid grid-4">
 
         <section class="footer-col">
@@ -105,16 +113,16 @@
         <section class="footer-col">
             <h3>Studio</h3>
             <ul>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="careers.html">Careers</a></li>
-                <li><a href="support.html">Support</a></li>
+                <li><a href="../company.html#about">About Us</a></li>
+                <li><a href="../company.html#careers">Careers</a></li>
+                <li><a href="../company.html#support">Support</a></li>
             </ul>
         </section>
 
         <section class="footer-col">
             <h3>Press</h3>
             <ul>
-                <li><a href="news.html">Newsroom</a></li>
+                <li><a href="../company.html#newsroom">Newsroom</a></li>
             </ul>
         </section>
 

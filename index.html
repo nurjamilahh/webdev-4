@@ -18,31 +18,37 @@
 </head>
 
 <body>
+    <header class="sticky top-0 z-50 bg-[#121212] px-4 py-2 border-b border-white/5 shadow-sm">
+        <nav class="flex items-center justify-between flex-nowrap max-w-7xl mx-auto">
+            
+            <a href="#home" class="shrink-0">
+                <h1 class="text-lg md:text-xl font-black tracking-tighter bg-gradient-to-b from-[#FFD700] to-[#8A6E2F] bg-clip-text text-transparent">RevoFun
+                </h1>
+            </a>
 
-    <nav class="navbar">
-        <a href="#home" class="logo-link">
-            <h1 class="logo">RevoFun</h1>
-        </a>
-        <ul class="nav-links">
-            <li><a href="games/guess.html">Guess</a></li>
-            <li><a href="games/rps.html">RPS</a></li>
-            <li><a href="games/clicker.html">Turbo Clicker</a></li>
-            <li><a href="games/dodge.html">Cosmic Dodge</a></li>
-        </ul>
-    </nav>
+            <ul class="flex items-center gap-2 md:gap-5">
+                <li><a href="games/guess.html" class="text-[13px] md:text-sm font-bold text-white/80 hover:text-white transition">Guess</a></li>
+                <li><a href="games/rps.html" class="text-[13px] md:text-sm font-bold text-white/80 hover:text-white transition">RPS</a></li>
+                <li><a href="games/clicker.html" class="text-[13px] md:text-sm font-bold text-white/80 hover:text-white transition">Clicker</a></li>
+                <li><a href="games/dodge.html" class="text-[13px] md:text-sm font-bold text-white/80 hover:text-white transition whitespace-nowrap">Dodge</a></li>
+            </ul>
 
-    <main class="main-content min-h-screen bg-gradient-to-b from-blue-100 via-purple-50 to-pink-100">
+        </nav>
+    </header>
+        
+    <main>
 
-        <section id="home" class="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
+        <section id="home">
+            <!-- <section id="home" class="relative w-full min-h-screen flex items-center justify-center overflow-hidden"> -->
     
-            <picture class="absolute inset-0 z-0"> 
+            <picture> 
                 <source srcset="images/bg-image-large.webp" media="(min-width: 1024px)">
                 <source srcset="images/bg-image-medium.webp" media="(min-width: 600px)">
                 <img src="images/bg-image-small.webp" 
                     alt="RevoFun Background" 
                     class="w-full h-full object-cover brightness-90"> </picture>
 
-            <div class="absolute inset-0 bg-black/20 z-10"></div>
+            <!-- <div class="absolute inset-0 bg-black/20 z-10"></div> -->
 
             <div class="hero-content relative z-20 text-center px-4 max-w-4xl animate-float"> 
                 <h2 class="text-5xl md:text-8xl font-black text-white drop-shadow-2xl mb-6">
@@ -104,7 +110,7 @@
             </div>
         </section>
 
-        <section id="why-us" class="page-section why-us-section bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100">
+        <section id="why-us" class="page-section why-us-section">
         <h3 class="text-2xl">Why Choose RevoFun?</h3>
             <div class="features-grid grid-4">
                 <div class="feature-card">
@@ -137,10 +143,10 @@
         <section class="footer-col">
             <h3>Games Hub</h3>
             <ul>
-                <li><a href="../milestone-2-nurjamilahh/games/guess.html">Number Guess</a></li>
-                <li><a href="../milestone-2-nurjamilahh/games/rps.html">RPS Showdown</a></li>
-                <li><a href="../milestone-2-nurjamilahh/games/clicker.html">Turbo Clicker</a></li>
-                <li><a href="../milestone-2-nurjamilahh/games/dodge.html">Cosmic Dodge</a></li>
+                <li><a href="../games/guess.html">Number Guess</a></li>
+                <li><a href="../games/rps.html">RPS Showdown</a></li>
+                <li><a href="../games/clicker.html">Turbo Clicker</a></li>
+                <li><a href="../games/dodge.html">Cosmic Dodge</a></li>
             </ul>
         </section>
 
